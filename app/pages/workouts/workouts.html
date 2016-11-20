@@ -1,0 +1,315 @@
+<!--
+  Generated template for the WorkoutsPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Workouts</ion-title>
+  </ion-navbar>
+
+
+  <ion-toolbar [attr.primary]="isAndroid ? '' : null" no-border-top>
+    <ion-segment [(ngModel)]="workout" [attr.light]="isAndroid ? '' : null">
+      <ion-segment-button class="segment-activated" value="today">
+        Today
+      </ion-segment-button>
+      <ion-segment-button value="progress">
+        Progress
+      </ion-segment-button>
+      <ion-segment-button value="saved">
+        Exercise Saved
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+
+</ion-header>
+
+<ion-content class="workouts" id="mywork">
+
+  <div [ngSwitch]="workout">
+
+
+  <ion-list *ngSwitchCase="'today'">
+
+
+
+      <ion-list-header *ngIf="abs.length > 0">
+        Abs
+      </ion-list-header>
+    <div class="ion-abs" *ngIf="abs.length > 0">
+      <ion-item-sliding *ngFor="let singleabs of abs; let i = index;">
+        <ion-item>
+          <ion-thumbnail item-left style="margin: 0">
+            <img src="{{singleabs.pic1}}">
+          </ion-thumbnail>
+          <h2>{{singleabs.muscle}}</h2>
+          <p>Equipment: {{singleabs.equipment}}</p>
+          <ion-badge item-right primary #absBadge>{{singleabs.sets}} sets left</ion-badge>
+        </ion-item>
+        <ion-item-options>
+          <button (tap)="deleteWorkout(i, singleabs.id, 'abs')" danger #howby>
+            <ion-icon name="ios-trash"></ion-icon>
+            Delete
+          </button>
+
+          <button (tap)="decreaseSet(i, 'abs', absBadge, singleabs.id)" secondary>
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            Set
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
+
+
+
+      <ion-list-header *ngIf="back.length > 0">
+        Back
+      </ion-list-header>
+    <div class="ion-back" *ngIf="back.length > 0">
+      <ion-item-sliding *ngFor="let singleback of back; let i = index;">
+        <ion-item>
+          <ion-thumbnail item-left style="margin: 0">
+            <img src="{{singleback.pic1}}">
+          </ion-thumbnail>
+          <h2>{{singleback.muscle}}</h2>
+          <p>Equipment: {{singleback.equipment}}</p>
+          <ion-badge item-right primary #backBadge>{{singleback.sets}} sets left</ion-badge>
+        </ion-item>
+        <ion-item-options>
+          <button (tap)="deleteWorkout(i, singleback.id, 'back')" danger>
+            <ion-icon name="ios-trash"></ion-icon>
+            Delete
+          </button>
+
+          <button (tap)="decreaseSet(i, 'back',backBadge, singleback.id )" secondary>
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            Set
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
+
+
+
+
+    <ion-list-header *ngIf="chest.length > 0">
+      Chest
+    </ion-list-header>
+    <div class="ion-chest" *ngIf="chest.length > 0">
+      <ion-item-sliding *ngFor="let singlechest of chest; let i = index;">
+        <ion-item>
+          <ion-thumbnail item-left style="margin: 0">
+            <img src="{{singlechest.pic1}}">
+          </ion-thumbnail>
+          <h2>{{singlechest.muscle}}</h2>
+          <p>Equipment: {{singlechest.equipment}}</p>
+          <ion-badge item-right primary #chestBadge>{{singlechest.sets}} sets left</ion-badge>
+        </ion-item>
+        <ion-item-options>
+          <button (tap)="deleteWorkout(i, singlechest.id, 'chest')" danger>
+            <ion-icon name="ios-trash"></ion-icon>
+            Delete
+          </button>
+          <button (tap)="decreaseSet(i, 'chest', chestBadge, singlechest.id)" secondary>
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            Set
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
+
+
+
+
+    <ion-list-header *ngIf="forearm.length > 0">
+      Forearms
+    </ion-list-header>
+    <div class="ion-forearms" *ngIf="forearm.length > 0">
+      <ion-item-sliding *ngFor="let singleforearm of forearm; let i = index;">
+        <ion-item>
+          <ion-thumbnail item-left style="margin: 0">
+            <img src="{{singleforearm.pic1}}">
+          </ion-thumbnail>
+          <h2>{{singleforearm.muscle}}</h2>
+          <p>Equipment: {{singleforearm.equipment}}</p>
+          <ion-badge item-right primary #forearmBadge>{{singleforearm.sets}} sets left</ion-badge>
+        </ion-item>
+        <ion-item-options>
+          <button (tap)="deleteWorkout(i, singleforearm.id, 'forearm')" danger>
+            <ion-icon name="ios-trash"></ion-icon>
+            Delete
+          </button>
+          <button (tap)="decreaseSet(i, 'forearm', forearmBadge, singleforearm.id)" secondary>
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            Set
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
+
+
+
+    <ion-list-header *ngIf="legs.length > 0">
+      Legs
+    </ion-list-header>
+    <div class="ion-legs" *ngIf="legs.length > 0">
+      <ion-item-sliding *ngFor="let singleleg of legs; let i = index">
+        <ion-item>
+          <ion-thumbnail item-left style="margin: 0">
+            <img src="{{singleleg.pic1}}">
+          </ion-thumbnail>
+          <h2>{{singleleg.muscle}}</h2>
+          <p>Equipment: {{singleleg.equipment}}</p>
+          <ion-badge item-right primary #legBadge>{{singleleg.sets}} sets left</ion-badge>
+        </ion-item>
+        <ion-item-options>
+          <button (tap)="deleteWorkout(i, singleleg.id, 'legs')" danger>
+            <ion-icon name="ios-trash"></ion-icon>
+            Delete
+          </button>
+          <button (tap)="decreaseSet(i, 'legs', legBadge, singleleg.id)" secondary>
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            Set
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
+
+
+
+    <ion-list-header *ngIf="shoulder.length > 0">
+      Shoulder
+    </ion-list-header>
+    <div class="ion-shoulder" *ngIf="shoulder.length > 0">
+      <ion-item-sliding *ngFor="let singleshoulder of shoulder; let i = index">
+        <ion-item>
+          <ion-thumbnail item-left style="margin: 0">
+            <img src="{{singleshoulder.pic1}}">
+          </ion-thumbnail>
+          <h2>{{singleshoulder.muscle}}</h2>
+          <p>Equipment: {{singleshoulder.equipment}}</p>
+          <ion-badge item-right primary #shoulderBadge>{{singleshoulder.sets}} sets left</ion-badge>
+        </ion-item>
+        <ion-item-options>
+          <button (tap)="deleteWorkout(i, singlshoulders.id, 'shoulder')" danger>
+            <ion-icon name="ios-trash"></ion-icon>
+            Delete
+          </button>
+          <button (tap)="decreaseSet(i, 'shoulder', shoulderBadge, singleshoulder.id)" secondary>
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            Set
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
+
+
+
+    <ion-list-header *ngIf="traps.length > 0">
+      Traps
+    </ion-list-header>
+    <div class="ion-traps" *ngIf="traps.length > 0">
+      <ion-item-sliding *ngFor="let singletrap of traps; let i = index">
+        <ion-item>
+          <ion-thumbnail item-left style="margin: 0">
+            <img src="{{singletrap.pic1}}">
+          </ion-thumbnail>
+          <h2>{{singletrap.muscle}}</h2>
+          <p>Equipment: {{singletrap.equipment}}</p>
+          <ion-badge item-right primary #trapsBadge>{{singletrap.sets}} sets left</ion-badge>
+        </ion-item>
+        <ion-item-options>
+          <button (tap)="deleteWorkout(i, singletrap.id, 'traps')" danger>
+            <ion-icon name="ios-trash"></ion-icon>
+            Delete
+          </button>
+          <button (tap)="decreaseSet(i, 'traps', trapsBadge, singletrap.id)" secondary>
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            Set
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
+
+
+
+
+      <ion-list-header *ngIf="bicep.length > 0">
+        Bicep
+      </ion-list-header>
+    <div class="ion-bicep" *ngIf="bicep.length > 0">
+      <ion-item-sliding *ngFor="let singlebicep of bicep; let i = index;">
+      <ion-item>
+        <ion-thumbnail item-left style="margin: 0">
+          <img src="{{singlebicep.pic1}}">
+        </ion-thumbnail>
+        <h2>{{singlebicep.muscle}}</h2>
+        <p>Equipment: {{singlebicep.equipment}}</p>
+        <ion-badge item-right primary #bicepBadge>{{singlebicep.sets}} sets left</ion-badge>
+      </ion-item>
+      <ion-item-options>
+        <button (tap)="deleteWorkout(i, singlebicep.id, 'bicep')" danger>
+          <ion-icon name="ios-trash"></ion-icon>
+          Delete
+        </button>
+        <button (tap)="decreaseSet(i, 'bicep', bicepBadge, singlebicep.id)" secondary>
+          <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+          Set
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+    </div>
+
+
+
+    <ion-list-header *ngIf="tricep.length > 0">
+      Tricep
+    </ion-list-header>
+    <div class="ion-tricep" *ngIf="tricep.length > 0">
+      <ion-item-sliding *ngFor="let singletricep of tricep; let i = index;">
+        <ion-item>
+          <ion-thumbnail item-left style="margin: 0">
+            <img src="{{singletricep.pic1}}">
+          </ion-thumbnail>
+          <h2>{{singletricep.muscle}}</h2>
+          <p>Equipment: {{singletricep.equipment}}</p>
+          <ion-badge item-right primary #tricepBadge>{{singletricep.sets}} sets left</ion-badge>
+        </ion-item>
+        <ion-item-options>
+          <button (tap)="deleteWorkout(i, singletricep.id, 'tricep')" danger>
+            <ion-icon name="ios-trash"></ion-icon>
+            Delete
+          </button>
+          <button (tap)="decreaseSet(i, 'tricep', tricepBadge, singletricep.id)" secondary>
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            Set
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
+
+  </ion-list>
+
+
+
+
+    <ion-list *ngSwitchCase="'progress'">
+      <ion-item>progress</ion-item>
+    </ion-list>
+
+
+    <ion-list *ngSwitchCase="'saved'">
+      <ion-item>savedd</ion-item>
+    </ion-list>
+
+
+
+
+
+</div>
+
+</ion-content>

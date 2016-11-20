@@ -1,0 +1,37 @@
+.workouts {
+
+
+  ion-item-sliding > .item{
+    padding-left: 0;
+
+  }
+
+  ion-list-header{
+    background-color: gainsboro;
+  }
+
+  ion-label{
+    margin: 0;
+  }
+
+  ion-thumbnail{
+    margin-right: 10px !important;
+  }
+
+  ion-thumbnail > img{
+    max-width: 8.3rem !important;
+  }
+
+
+}
+
+
+.segment-button.segment-activated{
+  background-color: #C84B4B;
+
+}
+
+.segment-button{
+  color: #FFF;
+  border-color: #fff;
+}
